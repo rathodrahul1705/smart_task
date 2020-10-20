@@ -83,7 +83,7 @@
                 <div class="title m-b-md">
                     SMART TASK
                 </div>
-                    <a class="btn btn-primary" href="{{url('product_view')}}">Continue</a>
+                    <a class="btn btn-primary" href="{{url('/product_view')}}">Continue</a>
             </div>
         </div>
     </body>
