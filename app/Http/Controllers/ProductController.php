@@ -10,10 +10,10 @@ use App\ProductMaster;
 class ProductController extends Controller
 {
     public function ProcuctIndex(){
-
-        $product = ProductMaster::all();
+        $product = ProductMaster::orderBy('id', 'DESC')->get();
     	return view('product.index',compact('product'));
     }
+
     public function ProcuctCreate(){
          $category_list = Category::all();
          // dd($category_list)
@@ -25,6 +25,7 @@ class ProductController extends Controller
         $product = ProductMaster::find($product_id);
         return view('product.view',compact('product'));
     }
+
     public function productEdit($product_id){
         // dd($product_id); 
         $product = ProductMaster::find((int)$product_id);
@@ -33,6 +34,7 @@ class ProductController extends Controller
          $size = Size::all();
         return view('product.edit',compact('category_list','size','product'));
     }
+
     public function productSave(Request $req){
 
         $product = new ProductMaster();
@@ -43,14 +45,12 @@ class ProductController extends Controller
         $product->product_stock = $req->product_stock;
         $product->product_description = $req->product_description;
         if($product->save()) {
+          $response["status"] = "success";            
+        }
 
-            $response["status"] = "success";            
-            }
-
-            else {
-
-            $response["status"] = "failure";
-            }
+        else {
+          $response["status"] = "failure";
+        }
 
         return $response;
 
@@ -66,92 +66,75 @@ class ProductController extends Controller
         $product->product_stock = $req->product_stock;
         $product->product_description = $req->product_description;
         if($product->save()) {
+          $response["status"] = "success";            
+        }
 
-            $response["status"] = "success";            
-            }
-
-            else {
-
-            $response["status"] = "failure";
-            }
+        else {
+          $response["status"] = "failure";
+        }
 
         return $response;
     }
 
-    public function productDelete($product_id){
+    public function productDelete($product_id) {
 
-         $product = ProductMaster::find((int)$product_id);
-        $product->delete();
-        return back()->with('warning','Product Deleted successfully!');
+      $product = ProductMaster::find((int)$product_id);
+      $product->delete();
+      return back()->with('warning','Product Deleted successfully!');
     }
 
     // ================Category section start===============================
 
-    public function productCategory(){
-
-        $category = Category::all();
-
+    public function productCategory() {
+      $category = Category::orderBy('id', 'DESC')->get();
     	return view('product_category.index',compact('category'));
     }
 
-    public function ProductCategoryCreate(){
-
+    public function ProductCategoryCreate() {
     	return view('product_category.create');
     }
-    public function ProductCategorySave(Request $req){
 
-        // dd($req->all());
+    public function ProductCategorySave(Request $req) {
         $category = new Category();
         $category->product_category = $req->product_category;
         if($category->save()) {
+          $response["status"] = "success";            
+        }
 
-            $response["status"] = "success";            
-            }
-
-            else {
-
-            $response["status"] = "failure";
-            }
+        else {
+          $response["status"] = "failure";
+        }
 
         return $response;
     }
 
-    public function ProductCategoryEdit($category_id){
-
-            $cat_id = (int)$category_id;
-             $category = Category::find((int)$category_id);
-              $category_list = Category::all();
-             return view('product_category.edit',compact('category','category_list', 'cat_id'));
+    public function ProductCategoryEdit($category_id) {
+      $cat_id = (int)$category_id;
+      $category = Category::find((int)$category_id);
+      $category_list = Category::all();
+      return view('product_category.edit',compact('category','category_list', 'cat_id'));
     }
 
-    public function ProductCategoryUpdate(Request $req, $cat_id){
+    public function ProductCategoryUpdate(Request $req, $cat_id) {
 
-        $category = Category::find((int)$cat_id);
-        $category->product_category = $req->product_category;
-             if($category->save()) {
-
-             $response["status"] = "success";            
-             }
-
-             else {
-
-             $response["status"] = "failure";
-             }
-
-        return $response;
+      $category = Category::find((int)$cat_id);
+      $category->product_category = $req->product_category;
+      if($category->save()) {
+         $response["status"] = "success";            
+      }
+      else {
+        $response["status"] = "failure";
+      }
+      return $response;
     }
-    public function productCategoryList($category_id){
 
+    public function productCategoryList($category_id) {
         $category = Category::find((int)$category_id);
-
         return view('product_category.view',compact('category'));
-
     }
-    public function productCategoryDelete($category_id){
 
-        // dd($category_id);
-
-         $category = Category::find((int)$category_id);
+    public function productCategoryDelete($category_id) {
+        $category = Category::find((int)$category_id);
         $category->delete();
         return back()->with('warning','Category Deleted successfully!');
     }
@@ -162,60 +145,51 @@ class ProductController extends Controller
 
     // ================Size section start===============================
 
-        public function productSize(){
-
-         $size = Size::all();
-
-        return view('product_size.index',compact('size'));
+    public function productSize() {
+      $size = Size::orderBy('id', 'DESC')->get();
+      return view('product_size.index',compact('size'));
     }
 
-    public function productSizeCreate(){
+    public function productSizeCreate() {
         return view('product_size.create');
     }
-    public function productSizeSave(Request $req){
-
-        $size = new Size();
-        $size->product_size = $req->product_size;
-        if($size->save()) {
-
-             $response["status"] = "success";            
-             }
-             else {
-             $response["status"] = "failure";
-             }
-        return $response;
+ 
+    public function productSizeSave(Request $req) {
+      $size = new Size();
+      $size->product_size = $req->product_size;
+      if($size->save()) {
+         $response["status"] = "success";            
+       }
+       else {
+         $response["status"] = "failure";
+       }
+      return $response;
     }
-    public function productSizeEdit($size_id){
 
-        // dd($size_id);
+    public function productSizeEdit($size_id) {
         $siz_id = (int)$size_id;
-             $size = Category::find((int)$siz_id);
-              $size_list = Size::all();
-
+        $size = Category::find((int)$siz_id);
+        $size_list = Size::all();
         return view('product_size.edit',compact('size','siz_id','size_list'));
     }
-    public function productSizeUpdate(Request $req,$size_id){
 
-        // dd($req->all());
+    public function productSizeUpdate(Request $req,$size_id) {
         $size = Size::find((int)$size_id);
         $size->product_size = $req->product_size;
-             if($size->save()) {
-
-             $response["status"] = "success";            
-             }
-
-             else {
-
-             $response["status"] = "failure";
-             }
+         if($size->save()) {
+           $response["status"] = "success";            
+         }
+         else {
+           $response["status"] = "failure";
+         }
     }
 
-    public function productSizeView($size_id){
+    public function productSizeView($size_id) {
          $size = Size::find((int)$size_id);
          return view('product_size.view',compact('size'));
     }
-    public function productSizeDelete($size_id){
 
+    public function productSizeDelete($size_id) {
         $size = Size::find((int)$size_id);
         $size->delete();
         return back()->with('warning','Size Deleted successfully!');

@@ -26,7 +26,7 @@ Route::get('product_edit/{product_id}','ProductController@productEdit');
 Route::post('product_update/{product_id}','ProductController@productUpdate');
 Route::get('product_delete/{product_id}','ProductController@productDelete');
 
-// ============ Rout product size crud start====================
+// ============ Rout product crud start====================
 
 Route::get('product_size','ProductController@productSize');
 Route::get('product_size_create','ProductController@productSizeCreate');
