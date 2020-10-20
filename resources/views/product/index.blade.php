@@ -27,13 +27,13 @@
       <table summary="This table shows how to create responsive tables using Datatables' extended functionality" class="table table-bordered table-hover dt-responsive">
         <thead>
           <tr>
-            <!-- <th>SR.No.</th> -->
+            <th>SR.No.</th>
             <th>PRODUCT NAME</th>
             <th>PRODUCT CATEGORY</th>
-            <th>PRODUCT PRIZE</th>
             <th>PRODUCT SIZE</th>
+            <th>PRODUCT PRIZE</th>
             <th>STOCK</th>
-            <th>PRODUCT DESCRIPTION</th>
+            <!-- <th>PRODUCT DESCRIPTION</th> -->
             <th>ACTION</th>
           </tr>
         </thead>
@@ -41,11 +41,12 @@
           @foreach($product as $key=>$products)
           <tr>
             <td>{{$key+1}}</td>
+            <td>{{$products->product_name}}</td>
             <td>{{$products->product_category}}</td>
-            <td>{{$products->product_price}}</td>
             <td>{{$products->product_size}}</td>
+            <td>{{$products->product_price}}</td>
             <td>{{$products->product_stock}}</td>
-            <td>{{$products->product_description}}</td>
+            <!-- <td>{{$products->product_description}}</td> -->
             <td>
               <a href="{{url('product_edit')}}/{{$products->id}}" class=" btn btn-sm btn-primary"><i class="fa fa-edit"></i></a>
               <a href="{{url('product_delete')}}/{{$products->id}}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
