@@ -18,8 +18,8 @@ Route::get('/', function () {
 
 // ============ Rout product crud start=========================
 
-Route::get('product_view','ProductController@ProcuctIndex');
-Route::get('product_create','ProductController@ProcuctCreate');
+Route::get('product_view','ProductController@procuctIndex');
+Route::get('product_create','ProductController@procuctCreate');
 Route::post('product_save','ProductController@productSave');
 Route::get('product_details/{product_id}','ProductController@productView');
 Route::get('product_edit/{product_id}','ProductController@productEdit');
@@ -41,10 +41,10 @@ Route::get('product_size_delete/{size_id}','ProductController@productSizeDelete'
 // ============ Rout product category crud start================
 
 Route::get('product_category','ProductController@productCategory');
-Route::get('product_category_create','ProductController@ProductCategoryCreate');
-Route::post('product_category_save','ProductController@ProductCategorySave');
-Route::get('product_category_edit/{category_id}','ProductController@ProductCategoryEdit');
-Route::post('product_category_update/{cat_id}','ProductController@ProductCategoryUpdate');
+Route::get('product_category_create','ProductController@productCategoryCreate');
+Route::post('product_category_save','ProductController@productCategorySave');
+Route::get('product_category_edit/{category_id}','ProductController@productCategoryEdit');
+Route::post('product_category_update/{cat_id}','ProductController@productCategoryUpdate');
 Route::get('product_category_list/{category_id}','ProductController@productCategoryList');
 Route::get('product_category_delete/{category_id}','ProductController@productCategoryDelete');
 

@@ -9,12 +9,12 @@ use App\ProductMaster;
 
 class ProductController extends Controller
 {
-    public function ProcuctIndex(){
+    public function procuctIndex(){
         $product = ProductMaster::orderBy('id', 'DESC')->get();
     	return view('product.index',compact('product'));
     }
 
-    public function ProcuctCreate(){
+    public function procuctCreate(){
          $category_list = Category::all();
          // dd($category_list)
          $size = Size::all();
@@ -90,11 +90,11 @@ class ProductController extends Controller
     	return view('product_category.index',compact('category'));
     }
 
-    public function ProductCategoryCreate() {
+    public function productCategoryCreate() {
     	return view('product_category.create');
     }
 
-    public function ProductCategorySave(Request $req) {
+    public function productCategorySave(Request $req) {
         $category = new Category();
         $category->product_category = $req->product_category;
         if($category->save()) {
@@ -108,14 +108,14 @@ class ProductController extends Controller
         return $response;
     }
 
-    public function ProductCategoryEdit($category_id) {
+    public function productCategoryEdit($category_id) {
       $cat_id = (int)$category_id;
       $category = Category::find((int)$category_id);
       $category_list = Category::all();
       return view('product_category.edit',compact('category','category_list', 'cat_id'));
     }
 
-    public function ProductCategoryUpdate(Request $req, $cat_id) {
+    public function productCategoryUpdate(Request $req, $cat_id) {
 
       $category = Category::find((int)$cat_id);
       $category->product_category = $req->product_category;

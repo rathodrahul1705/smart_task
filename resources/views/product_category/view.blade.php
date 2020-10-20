@@ -5,6 +5,7 @@
 <div class="container">
   <div class="row">
     <h3>CATEGORY LIST</h3>
+    <a href="{{url('product_category')}} " class="btn btn-primary">BACK</a>
   </div>
   <hr>
 <form class="form-horizontal" id="create_category">

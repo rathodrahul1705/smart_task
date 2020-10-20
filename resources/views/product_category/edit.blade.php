@@ -8,7 +8,7 @@
   <div class="row">
     
     <h3>EDIT CATEGORY</h3>
-
+    <a href="{{url('product_category')}} " class="btn btn-primary">BACK</a>
   </div>
 
   <hr>
